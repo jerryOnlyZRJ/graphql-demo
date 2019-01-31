@@ -36,7 +36,41 @@ const typeDefs = gql `
     name: String
     age: Int
   }
+  type Mutation {
+    updateUser (
+      userId: ID!,
+      name: String
+    ): User
+  }
+
+  # we need to tell the server which types represent the root query
+  # 如果省略，则默认会使用Query Type作为root query
+  schema {
+    query: Query
+    mutation: Mutation
+  }
 `;
+
+// client graphql:
+// mutation UpdateUser {
+//   updateUser(
+//     userId: 1
+//     name: "Ranjay"
+//   ){
+//     name
+//     age
+//   }
+// }
+
+// fragment userInfo on User {
+//   name
+//   age
+// }
+// query getUserInfo {
+//   user(id: 1) {
+//     ...userInfo
+//   }
+// }
 
 // Provide resolver functions for your schema fields
 const resolvers = {
@@ -44,8 +78,14 @@ const resolvers = {
     user: (_, args) => {
       return data[args.id]
     }
+  },
+  Mutation: {
+    updateUser(_, user) {
+      // { userId: '1', name: 'Ranjay' }
+      console.log(user)
+    }
   }
-};
+}
 
 const graphqlServer = new ApolloServer({
   typeDefs,
