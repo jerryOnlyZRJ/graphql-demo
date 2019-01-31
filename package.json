@@ -1,0 +1,28 @@
+{
+  "name": "testtodo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js",
+    "start:dev": "supervisor app.js",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "apollo-server-koa": "^2.3.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "graphql": "^14.1.1",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1",
+    "koa-swig": "^2.2.1",
+    "lokka": "^1.7.0",
+    "lokka-transport-http": "^1.6.1"
+  },
+  "devDependencies": {
+    "supervisor": "^0.12.0",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
+  }
+}
