@@ -9,6 +9,7 @@ const dataInfo = client.createFragment(`
     age
   }
 `);
+
 client.query(`
   {
        user(id: 1) {
@@ -18,3 +19,16 @@ client.query(`
 `).then(result => {
   console.log(result);
 });
+
+client.mutate(`
+{
+  updateUser(
+    userId: 1
+    name: "Ranjay"
+  ){
+    ...${dataInfo}
+  }
+}
+`).then(result => {
+  console.log(result)
+})
